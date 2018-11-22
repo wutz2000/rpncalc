@@ -20,8 +20,8 @@
 
 package com.terrywu.rpncalc.stack;
 
-import java.util.Iterator;
 import java.util.Stack;
+import java.util.HashMap;
 
 /**
  * StackMgr
