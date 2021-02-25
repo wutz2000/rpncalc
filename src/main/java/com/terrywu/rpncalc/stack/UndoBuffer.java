@@ -32,16 +32,21 @@ public class UndoBuffer<E> {
     protected int bufferSize;
     protected int tail;
 
-    // head is the position to store snapshot
+    /**
+     * head is the position to store snapshot
+     */
     protected int head;
 
-    // next index of current undo object
+    /**
+     * next index of current undo object
+     */
     protected int current;
 
     public UndoBuffer(int size)
     {
-        if (size <= 0)
+        if (size <= 0) {
             throw new IllegalArgumentException("Illegal size: " + size);
+        }
 
         this.buffer = new Object[size];
         this.bufferSize = size;
@@ -92,8 +97,9 @@ public class UndoBuffer<E> {
 
         // If it the first undo sKip the latest snapshot
         if (current == head) {
-            if (old == tail)
+            if (old == tail) {
                 return null;
+            }
 
             old = (old - 1 + bufferSize) % bufferSize;
         }

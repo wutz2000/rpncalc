@@ -22,9 +22,9 @@ package com.terrywu.rpncalc;
 
 public class ProcessResult {
     public static final int SUCCESS = 0;
-    public static final int InternlError = -1;
-    public static final int InvalidParameters = -1;
-    public static final int InsufficientParameters = -10;
+    public static final int INTERNL_ERROR = -1;
+    public static final int INVALID_PARAMETERS = -2;
+    public static final int INSUFFICIENT_PARAMETERS = -10;
 
     public int result;
     public DetailMsg detail;

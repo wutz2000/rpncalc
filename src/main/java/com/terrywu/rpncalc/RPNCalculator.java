@@ -46,9 +46,9 @@ public class RPNCalculator {
     }
 
     protected void initOperatorMap() {
-        operatorMap = new HashMap<String, Operator>();
+        operatorMap = new HashMap<String, Operator>(10);
 
-        Operator ops[] = new Operator[] {
+        Operator[] ops = new Operator[] {
                 new AddOp(),
                 new SubOp(),
                 new MulOp(),
@@ -63,6 +63,7 @@ public class RPNCalculator {
         }
     }
 
+    @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
         DecimalFormat fmt = new DecimalFormat("0.##########");
@@ -81,7 +82,7 @@ public class RPNCalculator {
         }
         catch(Exception e){
             processResult = new ProcessResult(
-                    ProcessResult.InternlError,
+                    ProcessResult.INTERNL_ERROR,
                     position,
                     token,
                     null,
@@ -102,8 +103,9 @@ public class RPNCalculator {
                 ProcessResult.SUCCESS,
                 position,
                 token);
-        if (token == null || token.isEmpty())
+        if (token == null || token.isEmpty()) {
             return processResult;
+        }
 
         if (operatorMap.containsKey(token)) {
             // Operator
@@ -112,8 +114,8 @@ public class RPNCalculator {
 
             // Check
             if ((execType == oetMathOpTwo && stackMgr.size() < 2)
-                || (execType == oetMathOpOne && stackMgr.size() < 1)){
-                processResult.result = ProcessResult.InsufficientParameters;
+                || (execType == oetMathOpOne && stackMgr.size() < 1)) {
+                processResult.result = ProcessResult.INSUFFICIENT_PARAMETERS;
                 processResult.detail.position = position;
                 processResult.detail.msg = String.format("operator %s (position: %d): insufficient parameters",
                         token,
@@ -157,10 +159,11 @@ public class RPNCalculator {
     public ProcessResult processLine(String line) {
         ProcessResult processResult = new ProcessResult();
 
-        if (line == null)
+        if (line == null) {
             return processResult;
+        }
 
-        char c[] = line.toCharArray();
+        char[] c = line.toCharArray();
         int length = c.length;
 
         StringBuffer token = new StringBuffer();

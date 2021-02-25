@@ -59,7 +59,7 @@ public class RPNCalculatorTest {
         RPNCalculator calc = new RPNCalculator();
 
         ProcessResult result = calc.processLine("5 +");
-        assertEquals(ProcessResult.InsufficientParameters, result.result);
+        assertEquals(ProcessResult.INSUFFICIENT_PARAMETERS, result.result);
         assertEquals(2, result.detail.position);
         assertEquals("+", result.detail.token);
         assertEquals("operator + (position: 2): insufficient parameters", result.detail.msg);

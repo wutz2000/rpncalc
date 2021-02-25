@@ -32,6 +32,10 @@ public abstract class AbstractControlOperator extends AbstractOperator {
         this.operandStack = operandStack;
     }
 
+    /**
+     * exec 执行
+     * @return boolean
+     */
     public abstract boolean exec();
 
     @Override

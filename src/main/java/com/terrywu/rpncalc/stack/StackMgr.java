@@ -81,8 +81,9 @@ public class StackMgr<E> implements RPNCalcOperandStack<E> {
         int oldSize = size();
         stack.clear();
 
-        if (oldSize > 0)
+        if (oldSize > 0) {
             setStackModified(true);
+        }
     }
 
     @Override
@@ -92,8 +93,9 @@ public class StackMgr<E> implements RPNCalcOperandStack<E> {
         for (int i = 0; i < steps; ++i) {
             Stack<E> tmp = undoBuffer.undo();
 
-            if (tmp != null)
+            if (tmp != null) {
                 restore = tmp;
+            }
         }
 
         if (restore != null) {

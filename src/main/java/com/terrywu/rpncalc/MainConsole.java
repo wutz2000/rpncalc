@@ -1,7 +1,7 @@
 /*
  * MainConsole.java
  * Created on 11/22/18 10:24 AM
- * Author: terry
+ * @author Terry Wu
  *
  * Copyright (c) 2018 Terry Wu
  *
@@ -48,8 +48,9 @@ public class MainConsole {
             String inputString = console.readLine(": ");
 
             result = calculator.processLine(inputString);
-            if (result.result != ProcessResult.SUCCESS)
+            if (result.result != ProcessResult.SUCCESS) {
                 System.out.println(result.detail.msg);
+            }
 
             System.out.println(calculator.toString());
         }
